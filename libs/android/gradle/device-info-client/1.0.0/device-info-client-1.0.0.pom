@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Required Project Information -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Define your group, artifact, and version -->
+    <groupId>libs.android.gradle</groupId>
+    <artifactId>device-info-client</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <!-- Repositories Section (Optional, in case you use external repos) -->
+    <repositories>
+        <!-- Example of adding Maven Central Repository (optional if using default) -->
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <!-- Dependencies Section -->
+    <dependencies>
+        <!-- Example: JSON library (org.json) -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230618</version>
+        </dependency>
+        <!-- Add other dependencies here if needed -->
+    </dependencies>
+
+    <!-- Build Configuration Section -->
+    <build>
+        <plugins>
+            <!-- Maven Compiler Plugin for Java 8 or higher -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <!-- Set the Java version to 1.8 (Java 8) or higher -->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Properties Section to specify Java version -->
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+  <distributionManagement>
+    <repository>
+        <id>ossrh</id>
+        <name>libs.android.gradle</name>
+        <url>file:///home/rock/rock/package/java/libs.android.gradle/repo/</url>
+    </repository>
+  </distributionManagement>
+
+
+</project>

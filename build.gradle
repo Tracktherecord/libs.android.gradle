@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'com.example' // Replace with your group
+version = '1.0.0'
+
+repositories {
+    mavenCentral() // Use Maven Central for dependencies
+}
+
+dependencies {
+    implementation 'org.json:json:20230618' // JSON library for JSONObject
+}
+
+// Creating a sourcesJar task manually for older Gradle versions
+task sourcesJar(type: Jar) {
+    baseName = 'device-info-client-sources' // Set the base name
+    from sourceSets.main.allSource
+}
+
+// Package JAR with compiled classes and sources
+artifacts {
+    archives sourcesJar
+    archives jar
+}
+
+// Define a custom task to run the DeviceInfoClient Java application
+task runDeviceInfoClient(type: JavaExec) {
+    group = 'Execution'
+    description = 'Run the DeviceInfoClient Java application.'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'libs.android.gradle.DeviceInfoClient' // Fully qualified name of your main class
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            // Use absolute path to avoid path resolution issues
+            url = uri("file:///home/rock/rock/package/java/libs.android.gradle/repo") // Absolute path to local repo
+        }
+    }
+}
+
+// Ensure that the runDeviceInfoClient task runs after the publish task
+publish.finalizedBy runDeviceInfoClient
